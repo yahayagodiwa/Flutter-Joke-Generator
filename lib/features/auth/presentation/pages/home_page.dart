@@ -1,7 +1,6 @@
 import 'package:crypto_app/features/auth/domain/entities/user_entity.dart';
-import 'package:crypto_app/features/joke/presentation/bloc/joke_bloc.dart';
+import 'package:crypto_app/features/joke/presentation/pages/joke_page.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
 class HomePage extends StatelessWidget {
   final UserEntity user;
@@ -12,67 +11,19 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Welcome, ${user.name}!'),
+        title: Text('Welcome ${user.email}!'), // Example personalization
         automaticallyImplyLeading: false,
       ),
-      body: BlocConsumer<JokeBloc, JokeState>(
-        listener: (context, state) {
-          if (state is JokeError) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(content: Text(state.message)),
+      body: Center(
+        child: ElevatedButton(
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_) => const JokePage()),
             );
-          }
-        },
-        builder: (context, jokeState) {
-          if (jokeState is JokeLoading) {
-            return const Center(child: CircularProgressIndicator());
-          } else if (jokeState is JokeFetched) {
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Text(
-                      jokeState.joke.setup,
-                      style: const TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 12),
-                    Text(
-                      jokeState.joke.punchline,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        color: Colors.grey,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                    const SizedBox(height: 24),
-                    ElevatedButton(
-                      onPressed: () {
-                         context.read<JokeBloc>().add(const JokeRequested.random());
-                      },
-                      child: const Text("Get Another Joke"),
-                    ),
-                  ],
-                ),
-              ),
-            );
-          } else {
-            // Initial state
-            return Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  context.read<JokeBloc>().add(const JokeRequested.random());
-                },
-                child: const Text("Get a Random Joke"),
-              ),
-            );
-          }
-        },
+          },
+          child: const Text("Go to Jokes"),
+        ),
       ),
     );
   }
