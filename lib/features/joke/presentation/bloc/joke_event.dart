@@ -20,7 +20,7 @@ class JokeRequested extends JokeEvent {
     required this.punchline,
   });
 
-  // 👇 Factory constructor for random jokes
+ 
   const JokeRequested.random()
       : id = '',
         type = '',

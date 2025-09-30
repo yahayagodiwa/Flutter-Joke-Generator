@@ -11,7 +11,7 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Welcome ${user.email}!'), // Example personalization
+        title: Text('Welcome ${user.name}!'),
         automaticallyImplyLeading: false,
       ),
       body: Center(
