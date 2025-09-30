@@ -26,7 +26,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Crypto App',
+        title: 'Joke App',
         theme: ThemeData(primarySwatch: Colors.blue),
         home: const LoginPage(),
       ),
