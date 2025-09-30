@@ -1,4 +1,4 @@
-// lib/core/di/injection_container.dart
+
 import 'package:crypto_app/features/auth/data/datasources/auth_remote_datasource.dart';
 import 'package:crypto_app/features/auth/data/repositories/auth_repository_impl.dart';
 import 'package:crypto_app/features/auth/domain/repositories/auth_repository.dart';
